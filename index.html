@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffd1dc;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        img {
+            width: 200px;
+            height: auto;
+            transition: transform 0.5s ease-in-out;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .btn {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 20px;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+        }
+        .animate {
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffd1dc;
+        }
+        .heart {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: relative;
+            transform: rotate(-45deg);
+            animation: pulse 1s infinite;
+        }
+        .heart:before, .heart:after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart:before {
+            top: -25px;
+            left: 0;
+        }
+        .heart:after {
+            left: 25px;
+            top: 0;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1) rotate(-45deg); }
+            50% { transform: scale(1.2) rotate(-45deg); }
+            100% { transform: scale(1) rotate(-45deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader hidden" id="loading">
+        <div class="heart"></div>
+    </div>
+
+    <div class="container" id="question">
+        <img src="C:\Users\Asus A442U\Downloads\cute lovers.jpg" alt="Do you love me?">
+        <h2>Do you love me?</h2>
+        <div class="buttons">
+            <button class="btn" onclick="startLoading('love')">Yes</button>
+            <button class="btn" onclick="startLoading('angry')">No</button>
+        </div>
+    </div>
+    <div class="container hidden" id="answer-love">
+        <img src="C:\Users\Asus A442U\Downloads\cute love.jpg" alt="I knew it!" class="animate">
+        <h2>I knew it! 😍</h2>
+    </div>
+    <div class="container hidden" id="answer-angry">
+        <img src="C:\Users\Asus A442U\Downloads\cute angry.jpg" alt="Angry!" class="animate">
+        <h2>Hmph! 😤</h2>
+    </div>
+
+    <script>
+        function startLoading(answer) {
+            document.getElementById('question').classList.add('hidden');
+            document.getElementById('loading').classList.remove('hidden');
+            
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+                if (answer === 'love') {
+                    document.getElementById('answer-love').classList.remove('hidden');
+                } else {
+                    document.getElementById('answer-angry').classList.remove('hidden');
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
